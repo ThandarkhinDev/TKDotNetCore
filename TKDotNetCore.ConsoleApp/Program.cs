@@ -28,9 +28,14 @@ Console.WriteLine("Connection Close");
 
 foreach (DataRow dr in dt.Rows)
 {
-    Console.WriteLine("BlogId : "+ dr["BlogId"]);
+    /*Console.WriteLine("BlogId : " + dr["BlogId"]);
     Console.WriteLine("BlogId : " + dr["BlogTitle"]);
     Console.WriteLine("BlogId : " + dr["BlogAuthor"]);
+    Console.WriteLine("BlogId : " + dr["BlogContent"]);*/
+    Console.WriteLine(dr[0].ToString());
+    Console.WriteLine(dr[1].ToString());
+    Console.WriteLine(dr[2].ToString());
+    Console.WriteLine(dr[3].ToString());
 }
 
 Console.ReadKey();
