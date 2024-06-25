@@ -78,5 +78,29 @@ namespace TKDotNetCore.ConsoleApp
             Console.WriteLine(message);
 
         }
+
+        public void Update(int ID, string Title, string Author, string Content)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogTitle] = @BlogTitle
+                  ,[BlogAuthor] = @BlogAuthor
+                  ,[BlogContent] = @BlogContent
+             WHERE [BlogId] = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", ID);
+            cmd.Parameters.AddWithValue("@BlogTitle", Title);
+            cmd.Parameters.AddWithValue("@BlogAuthor", Author);
+            cmd.Parameters.AddWithValue("@BlogContent", Content);
+            int result = cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            string message = result > 0 ? "Successfully Updated." : "Fail to Update Data";
+            Console.WriteLine(message);
+
+        }
     }
 }
