@@ -102,5 +102,22 @@ namespace TKDotNetCore.ConsoleApp
             Console.WriteLine(message);
 
         }
+
+        public void Delete(int blogid)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId= @BlogId";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", blogid);
+            int result = cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            string message = result > 0 ? "Successfully Deleted." : "Fail to Delete Data";
+            Console.WriteLine(message);
+
+        }
     }
 }
