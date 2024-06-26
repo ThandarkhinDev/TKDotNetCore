@@ -62,14 +62,24 @@ namespace TKDotNetCore.ConsoleApp
            ([BlogTitle]
            ,[BlogAuthor]
            ,[BlogContent])
-     VALUES
+            VALUES
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
-            SqlCommand cmd = new SqlCommand(query, sqlConnection);
-            cmd.Parameters.AddWithValue("@BlogTitle", Title);
-            cmd.Parameters.AddWithValue("@BlogAuthor", Author);
-            cmd.Parameters.AddWithValue("@BlogContent", Content);
+            //SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            //cmd.Parameters.AddWithValue("@BlogTitle", Title);
+            //cmd.Parameters.AddWithValue("@BlogAuthor", Author);
+            //cmd.Parameters.AddWithValue("@BlogContent", Content);
+            
+
+            SqlCommand cmd = new SqlCommand(query, sqlConnection)
+            {
+                Parameters = {
+                    new SqlParameter("@BlogTitle", Title),
+                    new SqlParameter("@BlogAuthor", Author),
+                    new SqlParameter("@BlogContent", Content)
+                }
+            };
             int result = cmd.ExecuteNonQuery();
 
             sqlConnection.Close();
