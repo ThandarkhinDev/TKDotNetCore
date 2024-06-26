@@ -119,5 +119,33 @@ namespace TKDotNetCore.ConsoleApp
             Console.WriteLine(message);
 
         }
+        public void GetDataById(int blogid)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"SELECT * FROM [dbo].[Tbl_Blog] WHERE BlogId= @BlogId";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", blogid);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+
+            sqlConnection.Close();
+            Console.WriteLine("Connection Close");
+
+            if (dt.Rows.Count == 0)
+            {
+                Console.WriteLine("No Data Found for this ID: " + blogid);
+                return;
+            }
+
+            DataRow dr = dt.Rows[0];
+
+            Console.WriteLine("Blog Id: " + dr[0].ToString());
+            Console.WriteLine("Blog title: " + dr[1].ToString());
+            Console.WriteLine("Blog author: " + dr[2].ToString());
+            Console.WriteLine("Blog content: " + dr[3].ToString());
+        }
     }
 }

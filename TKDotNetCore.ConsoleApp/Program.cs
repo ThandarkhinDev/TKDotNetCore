@@ -10,6 +10,8 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 /*adoDotNetExample.Read();*/
 /*adoDotNetExample.Create("Title2", "Author2", "Content2");*/
 //adoDotNetExample.Update(6, "Title6", "Author6", "Content6");
-adoDotNetExample.Delete(5);
+//adoDotNetExample.Delete(5);
+adoDotNetExample.GetDataById(5);
+adoDotNetExample.GetDataById(4);
 
 Console.ReadLine();
