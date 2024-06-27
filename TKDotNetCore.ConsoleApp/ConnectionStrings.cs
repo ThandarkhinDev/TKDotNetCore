@@ -14,7 +14,8 @@ namespace TKDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog = "TKDotNetCore",
             UserID = "sa",
-            Password = "sasasi123"
+            Password = "sasasi123",
+            TrustServerCertificate = true
         };
 
 

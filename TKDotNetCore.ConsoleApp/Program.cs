@@ -14,7 +14,10 @@ Console.WriteLine("Hello, World!");
 //adoDotNetExample.GetDataById(5);
 //adoDotNetExample.GetDataById(4);
 
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Run();
+
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Run();
 
 Console.ReadLine();
