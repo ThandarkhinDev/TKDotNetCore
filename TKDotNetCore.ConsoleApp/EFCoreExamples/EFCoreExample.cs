@@ -6,8 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TKDotNetCore.ConsoleApp.Dtos;
 
-namespace TKDotNetCore.ConsoleApp
+namespace TKDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
@@ -75,8 +76,8 @@ namespace TKDotNetCore.ConsoleApp
             }
             blogItem.BlogTitle = title;
             blogItem.BlogAuthor = author;
-            blogItem.BlogContent = content; 
-            
+            blogItem.BlogContent = content;
+
             int result = db.SaveChanges();
 
             string message = result > 0 ? "Successfully Updated." : "Fail to update Data";

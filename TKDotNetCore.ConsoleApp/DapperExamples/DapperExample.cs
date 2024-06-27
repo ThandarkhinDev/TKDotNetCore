@@ -6,8 +6,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TKDotNetCore.ConsoleApp.Dtos;
+using TKDotNetCore.ConsoleApp.Services;
 
-namespace TKDotNetCore.ConsoleApp
+namespace TKDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -39,7 +41,7 @@ namespace TKDotNetCore.ConsoleApp
         private void GetDataById(int blogid)
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
-            var blogItem = db.Query<BlogDto>("Select * from tbl_blog where BlogID = @BlogId",  new BlogDto { BlogId = blogid}).FirstOrDefault();
+            var blogItem = db.Query<BlogDto>("Select * from tbl_blog where BlogID = @BlogId", new BlogDto { BlogId = blogid }).FirstOrDefault();
 
             if (blogItem is null)
             {
@@ -101,12 +103,12 @@ namespace TKDotNetCore.ConsoleApp
             string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId= @BlogId";
 
             using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
-  
+
             var result = db.Execute(query, new BlogDto { BlogId = id });
 
             string message = result > 0 ? "Successfully Deleted." : "Fail to delete Data";
             Console.WriteLine(message);
         }
     }
-    
+
 }

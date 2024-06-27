@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TKDotNetCore.ConsoleApp.Dtos;
+using TKDotNetCore.ConsoleApp.Services;
 
-namespace TKDotNetCore.ConsoleApp
+namespace TKDotNetCore.ConsoleApp.EFCoreExamples
 {
-    internal class AppDbContext: DbContext
+    internal class AppDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
