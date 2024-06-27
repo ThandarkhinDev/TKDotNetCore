@@ -16,8 +16,9 @@ namespace TKDotNetCore.ConsoleApp
             //Read();
             //GetDataById(5);
             //GetDataById(6);
-            //Create("Title8", "Author8", "Content8");
-            Update(6, "Title6a", "Author6a", "Content6a");
+            //Create("Title9", "Author9", "Content9");
+            //Update(6, "Title6a", "Author6a", "Content6a");
+            Delete(10);
 
         }
         private void Read()
@@ -93,6 +94,21 @@ namespace TKDotNetCore.ConsoleApp
             var result = db.Execute(query, blogItem);
 
             string message = result > 0 ? "Successfully Updated." : "Fail to update Data";
+            Console.WriteLine(message);
+        }
+        private void Delete(int id)
+        {
+
+            var blogItem = new BlogDto
+            {
+                BlogId = id
+            };
+            string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId= @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
+            var result = db.Execute(query, blogItem);
+
+            string message = result > 0 ? "Successfully Deleted." : "Fail to delete Data";
             Console.WriteLine(message);
         }
     }
