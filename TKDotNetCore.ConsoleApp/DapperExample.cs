@@ -98,15 +98,11 @@ namespace TKDotNetCore.ConsoleApp
         }
         private void Delete(int id)
         {
-
-            var blogItem = new BlogDto
-            {
-                BlogId = id
-            };
             string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId= @BlogId";
 
             using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
-            var result = db.Execute(query, blogItem);
+  
+            var result = db.Execute(query, new BlogDto { BlogId = id });
 
             string message = result > 0 ? "Successfully Deleted." : "Fail to delete Data";
             Console.WriteLine(message);
