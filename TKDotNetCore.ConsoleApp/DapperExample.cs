@@ -14,8 +14,10 @@ namespace TKDotNetCore.ConsoleApp
         public void Run()
         {
             //Read();
-            GetDataById(5);
-            GetDataById(6);
+            //GetDataById(5);
+            //GetDataById(6);
+            //Create("Title8", "Author8", "Content8");
+            Update(6, "Title6a", "Author6a", "Content6a");
 
         }
         private void Read()
@@ -49,6 +51,49 @@ namespace TKDotNetCore.ConsoleApp
             Console.WriteLine("BlogAuthor : " + blogItem.BlogAuthor);
             Console.WriteLine("BlogContent : " + blogItem.BlogContent);
             Console.WriteLine("--------------");
+        }
+
+        private void Create(string title, string author, string content)
+        {
+
+            var blogItem = new BlogDto
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+                                 ([blogtitle], [blogauthor], [blogcontent])
+                                 VALUES
+                                 (@BlogTitle, @BlogAuthor, @BlogContent)";
+
+            using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
+            var result = db.Execute(query, blogItem);
+
+            string message = result > 0 ? "Successfully Saved." : "Fail to save Data";
+            Console.WriteLine(message);
+        }
+        private void Update(int id, string title, string author, string content)
+        {
+
+            var blogItem = new BlogDto
+            {
+                BlogId = id,
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+                                 SET [BlogTitle] = @BlogTitle,
+                                     [BlogAuthor] = @BlogAuthor,
+                                     [BlogContent] = @BlogContent
+                                 WHERE [BlogId] = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
+            var result = db.Execute(query, blogItem);
+
+            string message = result > 0 ? "Successfully Updated." : "Fail to update Data";
+            Console.WriteLine(message);
         }
     }
     
