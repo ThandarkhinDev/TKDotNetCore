@@ -13,7 +13,9 @@ namespace TKDotNetCore.ConsoleApp
     {
         public void Run()
         {
-            Read();
+            //Read();
+            GetDataById(5);
+            GetDataById(6);
 
         }
         private void Read()
@@ -29,6 +31,24 @@ namespace TKDotNetCore.ConsoleApp
                 Console.WriteLine("BlogContent : " + blog.BlogContent);
                 Console.WriteLine("--------------");
             }
+        }
+
+        private void GetDataById(int blogid)
+        {
+            using IDbConnection db = new SqlConnection(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
+            var blogItem = db.Query<BlogDto>("Select * from tbl_blog where BlogID = @BlogId",  new BlogDto { BlogId = blogid}).FirstOrDefault();
+
+            if (blogItem is null)
+            {
+                Console.WriteLine("No Data Found for this ID: " + blogid);
+                return;
+            }
+
+            Console.WriteLine("BlogId : " + blogItem.BlogId);
+            Console.WriteLine("BlogTitle : " + blogItem.BlogTitle);
+            Console.WriteLine("BlogAuthor : " + blogItem.BlogAuthor);
+            Console.WriteLine("BlogContent : " + blogItem.BlogContent);
+            Console.WriteLine("--------------");
         }
     }
     
