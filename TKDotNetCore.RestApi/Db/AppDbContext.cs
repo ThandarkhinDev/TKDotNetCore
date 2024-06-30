@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TKDotNetCore.ConsoleApp.Services;
+using TKDotNetCore.RestApi;
 using TKDotNetCore.RestApi.Models;
 
 namespace TKDotNetCore.RestApi.Db
@@ -15,6 +15,6 @@ namespace TKDotNetCore.RestApi.Db
         {
             optionsBuilder.UseSqlServer(ConnectionStrings._sqlConnectionStringBuilder.ConnectionString);
         }
-        public DbSet<BlogDto> Blogs { get; set; }
+        public DbSet<BlogModel> Blogs { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TKDotNetCore.ConsoleApp.Dtos;
+namespace TKDotNetCore.RestApi.Models;
 
 [Table("Tbl_Blog")]
 public class BlogModel
