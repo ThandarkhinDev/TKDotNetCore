@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TKDotNetCore.RestApi.Db;
 
 namespace TKDotNetCore.RestApi.Controllers
 {
@@ -7,6 +8,12 @@ namespace TKDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
+        private readonly AppDbContext _context= new AppDbContext();
+        /*public BlogController()
+        {
+            _context = new AppDbContext();
+        }*/
+
         [HttpGet]
         public IActionResult Read()
         {
