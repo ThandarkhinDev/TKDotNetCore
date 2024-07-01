@@ -68,7 +68,7 @@ namespace TKDotNetCore.RestApi.Controllers
             if (!string.IsNullOrEmpty(blog.BlogAuthor)) conditions += "[BlogAuthor] = @BlogAuthor,";
             if (!string.IsNullOrEmpty(blog.BlogContent)) conditions += "[BlogContent] = @BlogContent,";
             if (conditions.Length == 0) return NotFound("No Data To Be update");
-            conditions = conditions.Substring(0, conditions.Length - 1);
+            conditions = conditions.TrimEnd(',');
             blog.BlogId = id;
             string query = $@"UPDATE [dbo].[Tbl_Blog]
                                  SET {conditions}
